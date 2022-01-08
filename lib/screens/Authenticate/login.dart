@@ -1,7 +1,10 @@
+import 'package:firestore_crud/screens/Student/HomePageStudent.dart';
+import 'package:firestore_crud/screens/Teacher/HomePageTeacher.dart';
 import 'package:firestore_crud/services/auth_service.dart';
 import 'package:firestore_crud/screens/SupportTeam/HomePageSupport.dart';
 import 'package:firestore_crud/screens/Authenticate/register.dart';
 import 'package:flutter/material.dart';
+import 'package:firestore_crud/screens/Student/CompleteText.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -103,10 +106,17 @@ class _LoginPageState extends State<LoginPage> {
                           .signIn(
                               _emailController.text, _passwordController.text)
                           .then((value) {
-                        return Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePageSupport()));
+                        if (_emailController.text[0] == "t") {
+                          return Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePageTeacher()));
+                        } else {
+                          return Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePageStudent()));
+                        }
                       });
                     },
                     child: Container(
